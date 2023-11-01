@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Resources\QuoteResorce;
 use App\Models\Quote;
 use Illuminate\Http\Request;
@@ -19,9 +20,13 @@ class QuoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreQuoteRequest $request)
     {
-        //
+
+
+            $quote = Quote::create($request->validated());
+            return new QuoteResorce($quote);
+
     }
 
     /**

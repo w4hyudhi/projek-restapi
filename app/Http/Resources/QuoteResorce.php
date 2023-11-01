@@ -17,6 +17,8 @@ class QuoteResorce extends JsonResource
         return [
             'id' => $this->id,
             'text' => $this->text,
+            'author' => $this->author,
+
 
         ];
     }
