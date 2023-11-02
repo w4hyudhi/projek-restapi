@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuoteRequest;
+use App\Http\Requests\UpdateQuoteRequest;
 use App\Http\Resources\QuoteResorce;
 use App\Models\Quote;
 use Illuminate\Http\Request;
@@ -40,9 +41,12 @@ class QuoteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Quote $quote)
+    public function update(UpdateQuoteRequest $request, Quote $quote)
     {
-        //
+          $quote->update($request->validated());
+         return new QuoteResorce($quote);
+
+
     }
 
     /**
@@ -50,6 +54,7 @@ class QuoteController extends Controller
      */
     public function destroy(Quote $quote)
     {
-        //
+        $quote->delete();
+        return response()->noContent();
     }
 }
